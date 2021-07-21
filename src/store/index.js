@@ -43,6 +43,20 @@ export default new Vuex.Store({
          code:400}))
         })
       },
+      async handleLogIn({commit}, credentials) {
+          console.log("handling....")
+          return new Promise( async (resolve, reject) => {
+              await auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+                  .then(() => {
+                      resolve({
+                          message:"Log In Successful 😎",
+                          code: 200
+                      })
+                  })
+                  .catch((err) => reject({error:err,
+                      code:400}))
+          })
+      },
     async uploadAndReturnDownLoadUrl({commit}, file) {
         return new Promise(async (resolve, reject) =>{
 await storageRef.child("catalog/" + file.name).put(file).then(async() => {

@@ -2,6 +2,7 @@
 import App from './App.vue'
 import router from './router'
 import store from './store'
+  import firebase from "firebase";
   import { firestorePlugin }from 'vuefire'
   import {firestoreAction} from 'vuexfire'
 
@@ -21,6 +22,16 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User logged in already or has just logged in.
+      console.log(user.uid);
+    } else {
+      console.log("logged out")
+      // User not logged in or has just logged out.
+    }
+  });
 
 new Vue({
   router,

@@ -9,7 +9,6 @@ const {
     VUE_APP_FIREBASE_PROJECT_ID ,
     VUE_APP_FIREBASE_STORAGE_BUCKET
 } = process.env
-
 const firebaseConfig =  {
     apiKey: VUE_APP_FIREBASE_API_KEY,
     authDomain: VUE_APP_FIREBASE_AUTH_DOMAIN,

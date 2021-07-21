@@ -16,8 +16,22 @@
         <b-nav-item href="#" disabled>Disabled</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
-    <b-modal id="modal-log-in" title="BootstrapVue">
-      <p class="my-4">Hello from modal!</p>
+    <b-modal id="modal-log-in" @ok="LogInWithEmailAndPassword"title="BootstrapVue">
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group
+            label="Email"
+        >
+          <b-form-input invalid-feedback="" v-model="credentials.email" type="text" placeholder="Email"></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+            label="Password"
+        >
+          <b-form-input v-model="credentials.password" type="text" placeholder="Password"></b-form-input>
+        </b-form-group>
+
+        <b-form-group :class="this.code === 200 ? 'success-message' : 'error-message'" v-if="this.message">{{renderErrorMessage}}</b-form-group>
+      </form></p>
     </b-modal>
 
     <b-modal ref="modal" @ok="signUpWithEmailAndPassword" :ok-title="'Send'" id="modal-sign-up" title="Sign up">
@@ -64,11 +78,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["handleSignUp"]),
+    ...mapActions(["handleSignUp","handleLogIn"]),
     signUpWithEmailAndPassword(bvModalEvt) {
-
       bvModalEvt.preventDefault()
-
       if(this.credentials.email != null && this.credentials.password != null) {
         this.handleSignUp(this.credentials)
         .then((data) => {
@@ -78,7 +90,20 @@ export default {
           this.code = err.error.code
           this.message = err.error.message
         })
+      }
+    },
+    LogInWithEmailAndPassword(bvModalEvt) {
+      bvModalEvt.preventDefault()
 
+      if(this.credentials.email != null && this.credentials.password != null) {
+        this.handleLogIn(this.credentials)
+            .then((data) => {
+              this.code = data.code
+              this.message = data.message
+            }).catch((err) => {
+          this.code = err.error.code
+          this.message = err.error.message
+        })
       }
     },
     handleSubmit() {
