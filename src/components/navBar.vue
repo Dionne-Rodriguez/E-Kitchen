@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable type="dark" variant="dark">
-    <b-navbar-brand href="#">Dope Deals</b-navbar-brand>
+    <b-navbar-brand href="#">E-Kitchen</b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
       <template #default="{ expanded }">

@@ -43,7 +43,7 @@
           </li>
         </ul>
 
-      <b-button variant="dark" class="btn" @click="onSubmit">Submit</b-button>
+      <b-button variant="dark" class="btn" v-on:click="onSubmit">Submit</b-button>
 
     </form>
 
@@ -58,7 +58,7 @@ import {mapActions} from 'vuex'
 
 export default {
   name: "AddProduct",
-  data(){
+  data() {
     return {
       title: "",
       description: "",
@@ -67,11 +67,11 @@ export default {
       selectedType:null,
       types: [
         { value: null, text: 'Please select a product category' },
-        { value: 'Pre-Rolls', text: 'Pre-Rolls' },
-        { value: 'Flower', text: 'Flower' },
-        { value: 'Vaporizers', text: 'Vaporizers' },
-        { value: 'Concentrates', text: 'Concentrates' },
-        { value: 'Edibles', text: 'Edibles'}
+        { value: 'CHIMI', text: 'CHIMI' },
+        { value: 'BURRITO', text: 'BURRITO' },
+        { value: 'PASTELITO', text: 'PASTELITO' },
+        { value: 'DRINKS', text: 'DRINKS' },
+        { value: 'FRIES', text: 'FRIES'}
       ]
     }
   },
@@ -95,9 +95,17 @@ export default {
       });
     },
     onSubmit() {
+      console.log("Submit");
       if(this.file){
      this.uploadAndReturnDownLoadUrl(this.file)
         .then((url) => {
+          console.log({
+              title: this.title,
+              description: this.description,
+              type:this.selectedType,
+              stock: this.stock.toString(),
+              imageUrl: url
+            });
           if (this.title){
             this.addProduct({
               title: this.title,

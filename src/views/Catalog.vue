@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <nav-bar />
-    <h1>Catalog</h1>
+    <h1>Menu</h1>
     <b-container>
       <ProductCard :products="this.allProducts()"/>
 
@@ -31,7 +31,6 @@ export default {
       "edibles":null,
       "concentrates":null,
       "pre-rolls":null
-
     }
 
     ]
@@ -52,3 +51,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+h1 {
+  margin-top: 24px;
+}
+</style>

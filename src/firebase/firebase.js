@@ -15,7 +15,7 @@ const auth = firebase.auth()
 
 const storageRef = firebase.storage().ref()
 
-const catalogReference = db.collection("catalog")
+const catalogReference = db.collection("menu")
 
 
 export {

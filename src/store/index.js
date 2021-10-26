@@ -19,11 +19,11 @@ export default new Vuex.Store({
       ...vuexfireMutations,
     setProducts: (state, products) =>  {(
                 state.products = products
-
     )}
   },
   actions: {
     async addProduct({commit}, product) {
+        console.log("PRODUCT", product);
          await catalogReference.add(product)
              .then(() => {
                  console.log("Product Successfully Uploaded!")
