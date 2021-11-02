@@ -3,7 +3,16 @@
     <nav-bar />
     <h1>Menu</h1>
     <b-container>
-      <ProductCard :products="this.allProducts()" />
+      <div>
+        <b-nav tabs fill>
+          <b-nav-item @click="formatMenu('Burrito')">Burritos</b-nav-item>
+          <b-nav-item @click="formatMenu('Chimi')">Chimis</b-nav-item>
+          <b-nav-item @click="formatMenu('Nacho')">Nachos</b-nav-item>
+          <b-nav-item @click="formatMenu('Fries')">Fries</b-nav-item>
+          <b-nav-item @click="formatMenu('Drinks')">Drinks</b-nav-item>
+        </b-nav>
+      </div>
+      <ProductCard :products="this.products()" />
     </b-container>
   </div>
 </template>
@@ -11,7 +20,6 @@
 <script>
 import { mapGetters, mapState, mapActions } from "vuex";
 import ProductCard from "@/components/ProductCard";
-import navBar from "@/components/navBar";
 import NavBar from "../components/navBar";
 
 export default {
@@ -19,21 +27,24 @@ export default {
   components: { NavBar, ProductCard },
   data() {
     return {
-      types: [
-        {
-          flower: null,
-          vapes: null,
-          edibles: null,
-          concentrates: null,
-          "pre-rolls": null,
-        },
-      ],
+      formattedMenu: [],
     };
   },
   computed: {},
   methods: {
     ...mapGetters(["allProducts"]),
     ...mapActions(["bindProducts"]),
+    formatMenu(item) {
+      const products = this.allProducts();
+      this.formattedMenu = products.filter((product) => product.type == item);
+    },
+    products() {
+      if (this.formattedMenu.length > 0) {
+        return this.formattedMenu;
+      } else {
+        return this.allProducts();
+      }
+    },
   },
   mounted() {
     this.bindProducts();

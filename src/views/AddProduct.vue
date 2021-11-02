@@ -67,11 +67,11 @@ export default {
       selectedType:null,
       types: [
         { value: null, text: 'Please select a product category' },
-        { value: 'CHIMI', text: 'CHIMI' },
-        { value: 'BURRITO', text: 'BURRITO' },
-        { value: 'PASTELITO', text: 'PASTELITO' },
-        { value: 'DRINKS', text: 'DRINKS' },
-        { value: 'FRIES', text: 'FRIES'}
+        { value: 'Chimi', text: 'Chimi' },
+        { value: 'Burrito', text: 'Burrito' },
+        { value: 'Pastelito', text: 'Pastelito' },
+        { value: 'Drinks', text: 'Drinks' },
+        { value: 'Fries', text: 'Fries'}
       ]
     }
   },
