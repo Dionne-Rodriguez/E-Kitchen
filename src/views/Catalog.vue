@@ -3,53 +3,42 @@
     <nav-bar />
     <h1>Menu</h1>
     <b-container>
-      <ProductCard :products="this.allProducts()"/>
-
-<!--      <b-button @click="getAllProducts"> GET the shit</b-button>-->
-
-
+      <ProductCard :products="this.allProducts()" />
     </b-container>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from "vuex"
-import ProductCard from "@/components/ProductCard"
+import { mapGetters, mapState, mapActions } from "vuex";
+import ProductCard from "@/components/ProductCard";
 import navBar from "@/components/navBar";
 import NavBar from "../components/navBar";
 
 export default {
-
-
   name: "Catalog",
-  components: {NavBar, ProductCard},
-  data(){
-  return {
-    types: [{
-      "flower": null,
-      "vapes":null,
-      "edibles":null,
-      "concentrates":null,
-      "pre-rolls":null
-    }
-
-    ]
-  }
+  components: { NavBar, ProductCard },
+  data() {
+    return {
+      types: [
+        {
+          flower: null,
+          vapes: null,
+          edibles: null,
+          concentrates: null,
+          "pre-rolls": null,
+        },
+      ],
+    };
   },
-  computed: {
-
-  },
+  computed: {},
   methods: {
     ...mapGetters(["allProducts"]),
-    ...mapActions(["bindProducts"])
-
+    ...mapActions(["bindProducts"]),
   },
   mounted() {
-    this.bindProducts()
-  }
-
-}
-
+    this.bindProducts();
+  },
+};
 </script>
 
 <style scoped>

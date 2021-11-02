@@ -69,7 +69,7 @@ await storageRef.child("catalog/" + file.name).put(file).then(async() => {
         })
     },
       bindProducts: firestoreAction(({ bindFirestoreRef }) => {
-          return bindFirestoreRef('products', db.collection('catalog'))
+          return bindFirestoreRef('products', db.collection('menu'))
       }),
       unbindProducts: firestoreAction(({ unbindFirestoreRef }) => {
           unbindFirestoreRef('todos')

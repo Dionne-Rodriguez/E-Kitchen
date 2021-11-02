@@ -1,16 +1,21 @@
 <template>
   <div>
     <b-card-group deck deck v-for="row in formattedProducts">
-      <b-card  v-for="club in row"
-               :title="club.title"
-               :img-src="club.imageUrl"
-               img-alt="Img"
-               img-top>
+      <b-card
+        v-for="club in row"
+        :title="club.title"
+        :img-src="club.imageUrl"
+        img-alt="Img"
+        img-height="300"
+        img-width="300"
+        img-top
+      >
         <p class="card-text">
-          {{club.description}}
+          {{ club.description }}
         </p>
         <div slot="footer">
-          <b-btn variant="primary" block>Add</b-btn>
+          <b-form-spinbutton min="1" max="100"></b-form-spinbutton>
+          <b-btn class="mt-4" variant="primary" block>Add</b-btn>
         </div>
       </b-card>
     </b-card-group>
@@ -19,7 +24,7 @@
 
 <script>
 export default {
-  name: 'product-card',
+  name: "product-card",
   props: ["products"],
   computed: {
     // can move into its own mixin
@@ -29,17 +34,13 @@ export default {
         c[c.length - 1].push(n);
         return c;
       }, []);
-    }
+    },
   },
-  methods: {
-
-
-  }
-}
+  methods: {},
+};
 </script>
 
 <style scoped>
-
 .card-group .card {
   max-width: 25%;
 }
