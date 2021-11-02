@@ -11,9 +11,9 @@
 
     <b-collapse id="navbar-toggle-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item @click="$bvModal.show('modal-log-in')">Log in </b-nav-item>
-        <b-nav-item @click="$bvModal.show('modal-sign-up')">Sign up </b-nav-item>
-        <b-nav-item href="#" disabled>Disabled</b-nav-item>
+        <b-nav-item @click="$bvModal.show('modal-log-in')">Sign in </b-nav-item>
+        <b-nav-item @click="$bvModal.show('modal-sign-up')">Make an account</b-nav-item>
+        <b-nav-item @click="logOut">Log out</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
     <b-modal id="modal-log-in" @ok="LogInWithEmailAndPassword"title="BootstrapVue">
@@ -57,64 +57,67 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "navBar",
   data() {
     return {
-    credentials: {
-      email: null,
-      password: null
-    },
+      credentials: {
+        email: null,
+        password: null,
+      },
       message: null,
-      code:null
-    }
+      code: null,
+    };
   },
   computed: {
     renderErrorMessage() {
-      console.log(this.message)
-     return this.message
-    }
+      console.log(this.message);
+      return this.message;
+    },
   },
   methods: {
-    ...mapActions(["handleSignUp","handleLogIn"]),
+    ...mapActions(["handleSignUp", "handleLogIn","handleLogOut"]),
     signUpWithEmailAndPassword(bvModalEvt) {
-      bvModalEvt.preventDefault()
-      if(this.credentials.email != null && this.credentials.password != null) {
+      bvModalEvt.preventDefault();
+      if (this.credentials.email != null && this.credentials.password != null) {
         this.handleSignUp(this.credentials)
-        .then((data) => {
-          this.code = data.code
-          this.message = data.message
-        }).catch((err) => {
-          this.code = err.error.code
-          this.message = err.error.message
-        })
+          .then((data) => {
+            this.code = data.code;
+            this.message = data.message;
+          })
+          .catch((err) => {
+            this.code = err.error.code;
+            this.message = err.error.message;
+          });
       }
     },
     LogInWithEmailAndPassword(bvModalEvt) {
-      bvModalEvt.preventDefault()
+      bvModalEvt.preventDefault();
 
-      if(this.credentials.email != null && this.credentials.password != null) {
+      if (this.credentials.email != null && this.credentials.password != null) {
         this.handleLogIn(this.credentials)
-            .then((data) => {
-              this.code = data.code
-              this.message = data.message
-            }).catch((err) => {
-          this.code = err.error.code
-          this.message = err.error.message
-        })
+          .then((data) => {
+            this.code = data.code;
+            this.message = data.message;
+          })
+          .catch((err) => {
+            this.code = err.error.code;
+            this.message = err.error.message;
+          });
       }
+    },
+    logOut(){
+      this.handleLogOut()
     },
     handleSubmit() {
       this.$nextTick(() => {
-        this.$bvModal.hide('modal-prevent-closing')
-      })
-
+        this.$bvModal.hide("modal-prevent-closing");
+      });
     },
-
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -136,7 +139,6 @@ input {
 
 h5 {
   font-size: 28px;
-  margin-top:16px
+  margin-top: 16px;
 }
-
 </style>

@@ -57,6 +57,19 @@ export default new Vuex.Store({
                       code:400}))
           })
       },
+      async handleLogOut() {
+        return new Promise( async (resolve, reject) => {
+            await auth.signOut()
+                .then(() => {
+                    console.log("signed out")
+                    resolve({
+                        message:"Log out Successful 😎",
+                        code: 200
+                    })
+                })
+                .catch((err) => console.log(err));
+        })
+      },
     async uploadAndReturnDownLoadUrl({commit}, file) {
         return new Promise(async (resolve, reject) =>{
 await storageRef.child("catalog/" + file.name).put(file).then(async() => {
