@@ -2,20 +2,30 @@
   <div>
     <b-card-group deck deck v-for="row in formattedProducts">
       <b-card
-        v-for="club in row"
-        :title="club.title"
-        :img-src="club.imageUrl"
+        v-for="(product, index) in row"
+        :key="index"
+        :title="product.title"
+        :img-src="product.imageUrl"
         img-alt="Img"
         img-height="300"
         img-width="300"
         img-top
       >
-        <p class="card-text">
-          {{ club.description }}
-        </p>
+        <b-card-text class="text-dark">
+          {{ product.description }}
+        </b-card-text>
+        <b-card-text class="text-dark">
+          {{ product.price }}
+        </b-card-text>
         <div slot="footer">
-          <b-form-spinbutton min="1" max="100"></b-form-spinbutton>
-          <b-btn class="mt-4" variant="primary" block>Add</b-btn>
+          <b-form-spinbutton
+            v-model="quantity"
+            min="1"
+            max="100"
+          ></b-form-spinbutton>
+          <b-btn @click="addItem(product)" class="mt-4" variant="primary" block
+            >Add</b-btn
+          >
         </div>
       </b-card>
     </b-card-group>
@@ -23,8 +33,14 @@
 </template>
 
 <script>
+import {mapActions} from "vuex"
 export default {
   name: "product-card",
+  data() {
+    return {
+      quantity: "",
+    };
+  },
   props: ["products"],
   computed: {
     // can move into its own mixin
@@ -36,11 +52,22 @@ export default {
       }, []);
     },
   },
-  methods: {},
+  methods: {
+    ...mapActions(["addProductToCart"]),
+    addItem(product) {
+      const { title, price } = product;
+      const addedItem = {
+        title,
+        price,
+        quantity: this.quantity,
+      };
+      this.addProductToCart(addedItem)
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card-group .card {
   max-width: 25%;
 }
@@ -48,5 +75,9 @@ export default {
 .card-deck .card {
   margin-top: 100px;
   max-width: calc(25% - 30px);
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 </style>

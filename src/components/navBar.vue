@@ -1,6 +1,8 @@
 <template>
-  <b-navbar toggleable type="dark" variant="dark">
-    <b-navbar-brand href="#">E-Kitchen</b-navbar-brand>
+  <b-navbar class="white" toggleable type="light" variant="light">
+    <b-navbar-brand href="/">
+       <img src="../assets/e-kitchen.png" class="d-inline-block align-top" alt="Kitten">
+      </b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
       <template #default="{ expanded }">
@@ -16,7 +18,7 @@
         <b-nav-item @click="logOut">Log out</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
-    <b-modal id="modal-log-in" @ok="LogInWithEmailAndPassword"title="BootstrapVue">
+    <b-modal id="modal-log-in" @ok="LogInWithEmailAndPassword" title="BootstrapVue">
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group
             label="Email"
@@ -121,6 +123,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.white {
+   background-color: black!important;
+}
 input {
   width: 100%;
   border-radius: 5px;

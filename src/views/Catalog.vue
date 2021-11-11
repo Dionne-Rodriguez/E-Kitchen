@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <nav-bar />
     <h1>Menu</h1>
     <b-container>
@@ -13,26 +13,29 @@
         </b-nav>
       </div>
       <ProductCard :products="this.products()" />
+      <Cart v-if="this.cart().length > 0" />
     </b-container>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import ProductCard from "@/components/ProductCard";
 import NavBar from "../components/navBar";
+import Cart from "@/components/Cart"
 
 export default {
   name: "Catalog",
-  components: { NavBar, ProductCard },
+  components: { NavBar, ProductCard, Cart },
   data() {
     return {
       formattedMenu: [],
     };
   },
-  computed: {},
+  computed: {
+  },
   methods: {
-    ...mapGetters(["allProducts"]),
+    ...mapGetters(["allProducts", "cart"]),
     ...mapActions(["bindProducts"]),
     formatMenu(item) {
       const products = this.allProducts();
