@@ -18,14 +18,8 @@
           {{ product.price }}
         </b-card-text>
         <div slot="footer">
-          <b-form-spinbutton
-            v-model="quantity"
-            min="1"
-            max="100"
-          ></b-form-spinbutton>
-          <b-btn @click="addItem(product)" class="mt-4" variant="primary" block
-            >Add</b-btn
-          >
+            <b-form-spinbutton v-model="product.quantity" min="1" max="100"></b-form-spinbutton>
+          <b-btn @click="addItem(product, $event)" class="mt-4" variant="primary" block>Add</b-btn>
         </div>
       </b-card>
     </b-card-group>
@@ -38,7 +32,6 @@ export default {
   name: "product-card",
   data() {
     return {
-      quantity: "",
     };
   },
   props: ["products"],
@@ -54,12 +47,14 @@ export default {
   },
   methods: {
     ...mapActions(["addProductToCart"]),
-    addItem(product) {
-      const { title, price } = product;
+    addItem(product,e) {
+      console.log(e.target);
+      console.log("no way", product.quantity);
+      const { title, price, quantity } = product;
       const addedItem = {
         title,
         price,
-        quantity: this.quantity,
+        quantity
       };
       this.addProductToCart(addedItem)
     },

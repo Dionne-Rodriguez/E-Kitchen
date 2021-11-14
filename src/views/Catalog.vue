@@ -7,7 +7,7 @@
         <b-nav tabs fill>
           <b-nav-item @click="formatMenu('Burrito')">Burritos</b-nav-item>
           <b-nav-item @click="formatMenu('Chimi')">Chimis</b-nav-item>
-          <b-nav-item @click="formatMenu('Nacho')">Nachos</b-nav-item>
+          <b-nav-item @click="formatMenu('Nachos')">Nachos</b-nav-item>
           <b-nav-item @click="formatMenu('Fries')">Fries</b-nav-item>
           <b-nav-item @click="formatMenu('Drinks')">Drinks</b-nav-item>
         </b-nav>

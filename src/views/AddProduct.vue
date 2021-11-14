@@ -111,6 +111,7 @@ export default {
         { value: "Burrito", text: "Burrito" },
         { value: "Pastelito", text: "Pastelito" },
         { value: "Drinks", text: "Drinks" },
+         { value: "Nachos", text: "Nachos" },
         { value: "Fries", text: "Fries" },
       ],
     };

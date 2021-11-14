@@ -13,7 +13,7 @@
 
     <b-collapse id="navbar-toggle-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item @click="$bvModal.show('modal-log-in')">Sign in </b-nav-item>
+        <b-nav-item @click="$bvModal.show('modal-log-in')">Sign in</b-nav-item>
         <b-nav-item @click="$bvModal.show('modal-sign-up')">Make an account</b-nav-item>
         <b-nav-item @click="logOut">Log out</b-nav-item>
       </b-navbar-nav>
