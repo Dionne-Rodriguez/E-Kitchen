@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 import { mapActions } from "vuex";
 
 export default {
@@ -139,14 +140,6 @@ export default {
       console.log("Submit");
       if (this.file) {
         this.uploadAndReturnDownLoadUrl(this.file).then((url) => {
-          console.log({
-            title: this.title,
-            description: this.description,
-            type: this.selectedType,
-            price: `$${this.price}`,
-            stock: this.stock.toString(),
-            imageUrl: url,
-          });
           if (this.title) {
             this.addProduct({
               title: this.title,
@@ -155,6 +148,7 @@ export default {
               price: `$${this.price}`,
               stock: this.stock.toString(),
               imageUrl: url,
+              id: uuidv4()
             });
           }
         });

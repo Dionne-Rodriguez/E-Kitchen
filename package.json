@@ -12,6 +12,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "firebase": "^8.3.1",
+    "uuid": "^3.4.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuefire": "^2.2.5",
