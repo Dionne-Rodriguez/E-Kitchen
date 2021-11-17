@@ -4,8 +4,6 @@ import createPersistedState from "vuex-persistedstate";
 import { db, catalogReference, storageRef, auth } from "../firebase/firebase";
 import { firestoreAction, vuexfireMutations } from "vuexfire";
 
-const axios = require("axios");
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -20,7 +18,17 @@ export default new Vuex.Store({
       state.products = products;
     },
     addProductToCart: (state, item) => {
-      state.cart.push(item);
+      if (state.cart.length > 0) {
+        state.cart.every((cartItem) => {
+          if (cartItem.id == item.id) {
+            cartItem.quantity += item.quantity;
+          } else {
+            state.cart.push(item);
+          }
+        });
+      } else {
+        state.cart.push(item);
+      }
     },
   },
   actions: {
@@ -105,7 +113,7 @@ export default new Vuex.Store({
       return state.products;
     },
     cart: (state) => {
-        return state.cart
+      return state.cart;
     },
   },
 });

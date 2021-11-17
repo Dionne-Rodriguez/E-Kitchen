@@ -18,8 +18,14 @@
           {{ product.price }}
         </b-card-text>
         <div slot="footer">
-            <b-form-spinbutton v-model="product.quantity" min="1" max="100"></b-form-spinbutton>
-          <b-btn @click="addItem(product, $event)" class="mt-4" variant="primary" block>Add</b-btn>
+          <b-form-spinbutton
+            v-model="product.quantity"
+            min="1"
+            max="100"
+          ></b-form-spinbutton>
+          <b-btn @click="addItem(product)" class="mt-4" variant="primary" block
+            >Add</b-btn
+          >
         </div>
       </b-card>
     </b-card-group>
@@ -27,13 +33,9 @@
 </template>
 
 <script>
-import {mapActions} from "vuex"
+import { mapActions } from "vuex";
 export default {
   name: "product-card",
-  data() {
-    return {
-    };
-  },
   props: ["products"],
   computed: {
     // can move into its own mixin
@@ -47,16 +49,15 @@ export default {
   },
   methods: {
     ...mapActions(["addProductToCart"]),
-    addItem(product,e) {
-      console.log(e.target);
-      console.log("no way", product.quantity);
-      const { title, price, quantity } = product;
+    addItem(product) {
+      const { title, price, quantity, id } = product;
       const addedItem = {
         title,
         price,
-        quantity
+        quantity,
+        id,
       };
-      this.addProductToCart(addedItem)
+      this.addProductToCart(addedItem);
     },
   },
 };

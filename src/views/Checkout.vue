@@ -13,7 +13,11 @@
         <b-container>
           <div class="text-left">
             <h2>Your items</h2>
-            <b-list-group v-for="(addedItem, item) in checkoutCart" :key="item" class="m-4">
+            <b-list-group
+              v-for="(addedItem, item) in checkoutCart"
+              :key="item"
+              class="m-4"
+            >
               <b-list-group-item class="flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                   <b-button size="sm" class="m-0 quantity" pill>
@@ -64,12 +68,12 @@ export default {
   computed: {
     checkoutCart() {
       return this.cart();
-    },  
+    },
     calulatedTotal() {
-          this.cart().forEach(item => {
-           this.total += parseFloat(item.price.replace("$", '')) * item.quantity
-          });
-          return `$${this.total.toFixed(2)}`
+      this.cart().forEach((item) => {
+        this.total += parseFloat(item.price.replace("$", "")) * item.quantity;
+      });
+      return `$${this.total.toFixed(2)}`;
     },
   },
 };

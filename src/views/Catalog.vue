@@ -22,7 +22,7 @@
 import { mapGetters, mapActions } from "vuex";
 import ProductCard from "@/components/ProductCard";
 import NavBar from "../components/navBar";
-import Cart from "@/components/Cart"
+import Cart from "@/components/Cart";
 
 export default {
   name: "Catalog",
@@ -32,8 +32,7 @@ export default {
       formattedMenu: [],
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     ...mapGetters(["allProducts", "cart"]),
     ...mapActions(["bindProducts"]),
