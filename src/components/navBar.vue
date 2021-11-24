@@ -1,7 +1,11 @@
 <template>
+<b-container fluid>
   <b-navbar class="white" toggleable type="light" variant="light">
-    <b-navbar-brand href="/">
+    <!-- <b-navbar-brand href="/">
        <img src="../assets/e-kitchen.png" class="d-inline-block align-top" alt="Kitten">
+      </b-navbar-brand> -->
+       <b-navbar-brand v-if="mobile" href="/" >
+       <img src="../assets/e-kitchen-small.png" class="d-inline-block align-top" alt="E-Kitchen logo">
       </b-navbar-brand>
 
     <b-navbar-toggle target="navbar-toggle-collapse">
@@ -54,6 +58,7 @@
       </form>
     </b-modal>
   </b-navbar>
+</b-container>
 
 
 </template>
@@ -78,6 +83,10 @@ export default {
       console.log(this.message);
       return this.message;
     },
+    mobile() {
+      console.log("vuetify",this.$vuetify);
+    return this.$vuetify.breakpoint.sm
+  },
   },
   methods: {
     ...mapActions(["handleSignUp", "handleLogIn","handleLogOut"]),

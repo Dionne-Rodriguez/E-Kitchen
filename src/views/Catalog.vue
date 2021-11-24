@@ -2,7 +2,7 @@
   <div>
     <nav-bar />
     <h1>Menu</h1>
-    <b-container>
+    <b-container fluid>
       <div>
         <b-nav tabs fill>
           <b-nav-item @click="formatMenu('Burrito')">Burritos</b-nav-item>

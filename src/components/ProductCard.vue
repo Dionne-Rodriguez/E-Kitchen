@@ -1,15 +1,17 @@
 <template>
   <div>
-    <b-card-group deck deck v-for="row in formattedProducts">
+    <b-row cols-sm="1" cols-md="1" cols-lg="2">
+    <b-card-group deck v-for="row in formattedProducts">
+      <b-col>
       <b-card
         v-for="(product, index) in row"
         :key="index"
         :title="product.title"
         :img-src="product.imageUrl"
         img-alt="Img"
-        img-height="300"
-        img-width="300"
-        img-top
+        img-height="100"
+        img-width="100"
+        img-left
       >
         <b-card-text class="text-dark">
           {{ product.description }}
@@ -17,7 +19,6 @@
         <b-card-text class="text-dark">
           {{ product.price }}
         </b-card-text>
-        <div slot="footer">
           <b-form-spinbutton
             v-model="product.quantity"
             min="1"
@@ -26,9 +27,10 @@
           <b-btn @click="addItem(product)" class="mt-4" variant="primary" block
             >Add</b-btn
           >
-        </div>
       </b-card>
+    </b-col>
     </b-card-group>
+    </b-row>
   </div>
 </template>
 
@@ -41,7 +43,7 @@ export default {
     // can move into its own mixin
     formattedProducts() {
       return this.products.reduce((c, n, i) => {
-        if (i % 4 === 0) c.push([]);
+        if (i % 2 === 0) c.push([]);
         c[c.length - 1].push(n);
         return c;
       }, []);
@@ -64,16 +66,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-group .card {
-  max-width: 25%;
-}
-
 .card-deck .card {
   margin-top: 100px;
-  max-width: calc(25% - 30px);
-
-  @media (max-width: 600px) {
-    max-width: 100%;
-  }
+ max-width: calc(100% - 30px);
 }
 </style>
